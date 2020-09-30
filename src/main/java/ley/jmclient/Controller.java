@@ -128,7 +128,7 @@ public class Controller {
     }
 
     public void saveToken() {
-        File tokfile = new File(System.getProperty("user.home") + "/.jmclient/token");
+        File tokfile = new File(System.getProperty("user.home") + "/.config/jensmemes/token");
         token = txTok.getText();
         new Thread(new Runnable() {
             @Override
@@ -151,7 +151,7 @@ public class Controller {
     }
 
     public void loadToken()  {
-        File tokfile = new File(System.getProperty("user.home") + "/.jmclient/token");
+        File tokfile = new File(System.getProperty("user.home") + "/.config/jensmemes/token");
         new Thread(new Runnable() {
             @Override
             public void run() {
