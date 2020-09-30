@@ -6,11 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import ley.jmclient.model.Category;
-import ley.jmclient.model.CategoryResponse;
-import ley.jmclient.model.UploadResponse;
+import ley.jensmemes.HTTPClient;
+import ley.jensmemes.model.Category;
+import ley.jensmemes.model.response.CategoriesResponse;
+import ley.jensmemes.model.response.UploadResponse;
 
 import java.io.*;
+import java.net.URISyntaxException;
 
 public class Controller {
     public ChoiceBox<Category> boxCat;
@@ -49,7 +51,7 @@ public class Controller {
             @Override
             public void run() {
                 try {
-                    CategoryResponse res = HTTPClient.categories();
+                    CategoriesResponse res = HTTPClient.categories();
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -60,7 +62,7 @@ public class Controller {
                             boxCat.setVisible(true);
                         }
                     });
-                } catch (IOException e) {
+                } catch (IOException | URISyntaxException e) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -112,7 +114,7 @@ public class Controller {
                                     }
                                 }
                             });
-                        } catch (IOException e) {
+                        } catch (IOException | URISyntaxException e) {
                             showError(e.getLocalizedMessage());
                         }
                     }
